@@ -3,8 +3,8 @@ import { BottomControlPanel } from '@/src/components/BottomControlPanel';
 import { LoadingOverlay } from '@/src/components/LoadingOverlay';
 import { ScannerFrame } from '@/src/components/ScannerFrame';
 import { TopControlPanel } from '@/src/components/TopControlPanel';
-import { useFruitStore } from '@/src/store/fruitStore';
 import { CameraView, useCameraPermissions } from 'expo-camera';
+import * as ImagePicker from 'expo-image-picker';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useRef, useState } from 'react';
 import {
@@ -24,7 +24,6 @@ export default function CameraScreen() {
 
   const router = useRouter();
   const [permission, requestPermission] = useCameraPermissions();
-  // const [mediaPermission, requestMediaPermission] = MediaLibrary.usePermissions();
   
   const [isProcessing, setIsProcessing] = useState(false);
   const [isTorchOn, setIsTorchOn] = useState(false);
@@ -34,7 +33,6 @@ export default function CameraScreen() {
   // Initial Permissions Check
   useEffect(() => {
     if (!permission?.granted) requestPermission();
-    // if (!mediaPermission?.granted) requestMediaPermission();
   }, []);
 
   if (!permission) {
@@ -60,20 +58,67 @@ export default function CameraScreen() {
     setIsTorchOn(prev => !prev);
   };
 
-  const handleOpenGallery = () => {
-    // In a real app, you would navigate to an ImagePicker or Gallery Screen
-    Alert.alert("Gallery", "Opening Gallery...");
+  const handleOpenGallery = async () => {
+    if (isProcessing) return;
+
+    try {
+      const { status, granted, canAskAgain } =
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+      if (!granted) {
+        const message =
+          status === 'denied' && canAskAgain === false
+            ? 'Разрешите доступ к фото в настройках устройства.'
+            : 'Нужен доступ к галерее, чтобы выбрать фото.';
+        Alert.alert('Доступ к галерее', message);
+        return;
+      }
+
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ['images'],
+        allowsEditing: false,
+        quality: 1,
+      });
+
+      if (result.canceled || !result.assets?.length) return;
+
+      const asset = result.assets[0];
+      setLoading(true);
+      setIsProcessing(true);
+      try {
+        await sendToServer(asset.uri, {
+          fileName: asset.fileName ?? undefined,
+          mimeType: asset.mimeType ?? undefined,
+        });
+      } finally {
+        setLoading(false);
+        setIsProcessing(false);
+      }
+    } catch (error) {
+      Alert.alert('Ошибка', 'Не удалось открыть галерею или отправить фото.');
+      console.error(error);
+    }
   };
 
-  const sendToServer = async (imageUri: string) => {
-    console.log("Sending image to server:", imageUri);
+  const sendToServer = async (
+    imageUri: string,
+    meta?: { fileName?: string; mimeType?: string }
+  ) => {
+    console.log('Sending image to server:', imageUri);
 
     const formData = new FormData();
 
-    formData.append("image", {
+    const mimeType =
+      meta?.mimeType ||
+      (imageUri.toLowerCase().endsWith('.png') ? 'image/png' : 'image/jpeg');
+    const name =
+      meta?.fileName ||
+      (mimeType === 'image/png' ? 'image.png' : 'image.jpg');
+
+    formData.append('image', {
       uri: imageUri,
-      name: "iamge.jpg",
-      type: "image/jpeg",
+      name,
+      type: mimeType,
     } as any);
 
     try {

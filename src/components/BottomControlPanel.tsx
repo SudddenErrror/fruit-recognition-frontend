@@ -17,7 +17,11 @@ export const BottomControlPanel: React.FC<BottomControlProps> = ({
       <View style={styles.bottomControlsRow}>
         
         {/* Gallery Button (Left) */}
-        <TouchableOpacity onPress={onOpenGallery} style={styles.galleryButton}>
+        <TouchableOpacity
+          onPress={onOpenGallery}
+          disabled={isProcessing}
+          style={styles.galleryButton}
+        >
           <Ionicons name="images" size={28} color="white" />
         </TouchableOpacity>
 
