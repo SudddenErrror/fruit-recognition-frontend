@@ -157,5 +157,117 @@ export const fruitData = [
             { label: "Пищевые волокна", value: "9 г" },
             { label: "Вода", value: "47 г" }
         ]
+    },
+    {
+    id: 5,
+    slug: "banana",
+    scientific_name: "Musa",
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg",
+    name: "Банан",
+    description: "Популярный сладкий фрукт, богатый калием и быстрыми углеводами",
+    vitamins: [
+        { label: "Витамин A", value: "3 мкг" },
+        { label: "Витамин B1", value: "0.03 мг" },
+        { label: "Витамин B2", value: "0.07 мг" },
+        { label: "Витамин B3/PP", value: "0.67 мг" },
+        { label: "Витамин B5", value: "0.33 мг" },
+        { label: "Витамин B6", value: "0.37 мг" },
+        { label: "Витамин B9", value: "20 мкг" },
+        { label: "Витамин C", value: "8.7 мг" },
+        { label: "Витамин E", value: "0.1 мг" }
+    ],
+    macronutrients: [
+        { label: "Калий", value: "358 мг" },
+        { label: "Кальций", value: "5 мг" },
+        { label: "Магний", value: "27 мг" },
+        { label: "Натрий", value: "1 мг" },
+        { label: "Фосфор", value: "22 мг" }
+    ],
+    micronutrients: [
+        { label: "Железо", value: "0.26 мг" },
+        { label: "Марганец", value: "0.27 мг" },
+        { label: "Медь", value: "0.08 мг" },
+        { label: "Цинк", value: "0.15 мг" }
+    ],
+    nutrition: [
+        { label: "Белки", value: "1.1 г" },
+        { label: "Жиры", value: "0.3 г" },
+        { label: "Углеводы", value: "22.8 г" },
+        { label: "Калорийность", value: "89 ккал" },
+        { label: "Пищевые волокна", value: "2.6 г" },
+        { label: "Вода", value: "74.9 г" }
+    ]
+    },
+    {
+    id: 6,
+    slug: "fig",
+    scientific_name: "Ficus carica",
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/3/36/Figs.jpg",
+    name: "Инжир",
+    description: "Сладкий плод с мягкой мякотью, богатый клетчаткой и минералами",
+    vitamins: [
+        { label: "Витамин A", value: "7 мкг" },
+        { label: "Витамин B1", value: "0.06 мг" },
+        { label: "Витамин B2", value: "0.05 мг" },
+        { label: "Витамин B3/PP", value: "0.4 мг" },
+        { label: "Витамин B6", value: "0.11 мг" },
+        { label: "Витамин B9", value: "6 мкг" },
+        { label: "Витамин C", value: "2 мг" },
+        { label: "Витамин E", value: "0.1 мг" }
+    ],
+    macronutrients: [
+        { label: "Калий", value: "232 мг" },
+        { label: "Кальций", value: "35 мг" },
+        { label: "Магний", value: "17 мг" },
+        { label: "Натрий", value: "1 мг" },
+        { label: "Фосфор", value: "14 мг" }
+    ],
+    micronutrients: [
+        { label: "Железо", value: "0.37 мг" },
+        { label: "Марганец", value: "0.13 мг" },
+        { label: "Медь", value: "0.07 мг" },
+        { label: "Цинк", value: "0.15 мг" }
+    ],
+    nutrition: [
+        { label: "Белки", value: "0.8 г" },
+        { label: "Жиры", value: "0.3 г" },
+        { label: "Углеводы", value: "19.2 г" },
+        { label: "Калорийность", value: "74 ккал" },
+        { label: "Пищевые волокна", value: "2.9 г" },
+        { label: "Вода", value: "79 г" }
+    ]
+    },
+    {
+    id: 7,
+    slug: "longan",
+    scientific_name: "Dimocarpus longan",
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Dimocarpus_longan_fruit.jpg",
+    name: "Лонган",
+    description: "Тропический фрукт с прозрачной сладкой мякотью и легким мускусным ароматом",
+    vitamins: [
+        { label: "Витамин C", value: "84 мг" },
+        { label: "Витамин B1", value: "0.03 мг" },
+        { label: "Витамин B2", value: "0.14 мг" },
+        { label: "Витамин B3/PP", value: "0.3 мг" }
+    ],
+    macronutrients: [
+        { label: "Калий", value: "266 мг" },
+        { label: "Кальций", value: "1 мг" },
+        { label: "Магний", value: "10 мг" },
+        { label: "Фосфор", value: "21 мг" }
+    ],
+    micronutrients: [
+        { label: "Железо", value: "0.13 мг" },
+        { label: "Медь", value: "0.17 мг" },
+        { label: "Цинк", value: "0.05 мг" }
+    ],
+    nutrition: [
+        { label: "Белки", value: "1.3 г" },
+        { label: "Жиры", value: "0.1 г" },
+        { label: "Углеводы", value: "15.1 г" },
+        { label: "Калорийность", value: "60 ккал" },
+        { label: "Пищевые волокна", value: "1.1 г" },
+        { label: "Вода", value: "83 г" }
+    ]
     }
 ]
