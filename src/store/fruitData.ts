@@ -269,5 +269,123 @@ export const fruitData = [
         { label: "Пищевые волокна", value: "1.1 г" },
         { label: "Вода", value: "83 г" }
     ]
+    },
+    {
+    id: 8,
+    slug: "pineapple",
+    scientific_name: "Ananas comosus",
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Pineapple_and_cross_section.jpg",
+    name: "Ананас",
+    description: "Тропический фрукт с сочной мякотью и высоким содержанием витамина C",
+    vitamins: [
+        { label: "Витамин A", value: "3 мкг" },
+        { label: "Витамин B1", value: "0.08 мг" },
+        { label: "Витамин B2", value: "0.03 мг" },
+        { label: "Витамин B3/PP", value: "0.5 мг" },
+        { label: "Витамин B5", value: "0.21 мг" },
+        { label: "Витамин B6", value: "0.11 мг" },
+        { label: "Витамин B9", value: "18 мкг" },
+        { label: "Витамин C", value: "47.8 мг" },
+        { label: "Витамин E", value: "0.02 мг" }
+    ],
+    macronutrients: [
+        { label: "Калий", value: "109 мг" },
+        { label: "Кальций", value: "13 мг" },
+        { label: "Магний", value: "12 мг" },
+        { label: "Натрий", value: "1 мг" },
+        { label: "Фосфор", value: "8 мг" }
+    ],
+    micronutrients: [
+        { label: "Железо", value: "0.29 мг" },
+        { label: "Марганец", value: "0.93 мг" },
+        { label: "Медь", value: "0.11 мг" },
+        { label: "Цинк", value: "0.12 мг" }
+    ],
+    nutrition: [
+        { label: "Белки", value: "0.5 г" },
+        { label: "Жиры", value: "0.1 г" },
+        { label: "Углеводы", value: "13.1 г" },
+        { label: "Калорийность", value: "50 ккал" },
+        { label: "Пищевые волокна", value: "1.4 г" },
+        { label: "Вода", value: "86 г" }
+    ]
+    },
+    {
+    id: 9,
+    slug: "avocado",
+    scientific_name: "Persea americana",
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/c/c2/Avocado.jpg",
+    name: "Авокадо",
+    description: "Питательный фрукт с высоким содержанием полезных жиров и витаминов",
+    vitamins: [
+        { label: "Витамин A", value: "7 мкг" },
+        { label: "Витамин B1", value: "0.07 мг" },
+        { label: "Витамин B2", value: "0.13 мг" },
+        { label: "Витамин B3/PP", value: "1.74 мг" },
+        { label: "Витамин B5", value: "1.39 мг" },
+        { label: "Витамин B6", value: "0.26 мг" },
+        { label: "Витамин B9", value: "81 мкг" },
+        { label: "Витамин C", value: "10 мг" },
+        { label: "Витамин E", value: "2.07 мг" },
+        { label: "Витамин K", value: "21 мкг" }
+    ],
+    macronutrients: [
+        { label: "Калий", value: "485 мг" },
+        { label: "Кальций", value: "12 мг" },
+        { label: "Магний", value: "29 мг" },
+        { label: "Натрий", value: "7 мг" },
+        { label: "Фосфор", value: "52 мг" }
+    ],
+    micronutrients: [
+        { label: "Железо", value: "0.55 мг" },
+        { label: "Марганец", value: "0.14 мг" },
+        { label: "Медь", value: "0.19 мг" },
+        { label: "Цинк", value: "0.64 мг" }
+    ],
+    nutrition: [
+        { label: "Белки", value: "2 г" },
+        { label: "Жиры", value: "15 г" },
+        { label: "Углеводы", value: "9 г" },
+        { label: "Калорийность", value: "160 ккал" },
+        { label: "Пищевые волокна", value: "7 г" },
+        { label: "Вода", value: "73 г" }
+    ]
+    },
+    {
+    id: 10,
+    slug: "carambola",
+    scientific_name: "Averrhoa carambola",
+    image_url: "https://upload.wikimedia.org/wikipedia/commons/2/29/Carambola_cross_section.jpg",
+    name: "Карамбола",
+    description: "Экзотический фрукт в форме звезды с освежающим кисло-сладким вкусом",
+    vitamins: [
+        { label: "Витамин A", value: "3 мкг" },
+        { label: "Витамин B1", value: "0.01 мг" },
+        { label: "Витамин B2", value: "0.02 мг" },
+        { label: "Витамин B3/PP", value: "0.37 мг" },
+        { label: "Витамин B5", value: "0.39 мг" },
+        { label: "Витамин C", value: "34.4 мг" }
+    ],
+    macronutrients: [
+        { label: "Калий", value: "133 мг" },
+        { label: "Кальций", value: "3 мг" },
+        { label: "Магний", value: "10 мг" },
+        { label: "Натрий", value: "2 мг" },
+        { label: "Фосфор", value: "12 мг" }
+    ],
+    micronutrients: [
+        { label: "Железо", value: "0.08 мг" },
+        { label: "Марганец", value: "0.04 мг" },
+        { label: "Медь", value: "0.14 мг" },
+        { label: "Цинк", value: "0.12 мг" }
+    ],
+    nutrition: [
+        { label: "Белки", value: "1 г" },
+        { label: "Жиры", value: "0.3 г" },
+        { label: "Углеводы", value: "6.7 г" },
+        { label: "Калорийность", value: "31 ккал" },
+        { label: "Пищевые волокна", value: "2.8 г" },
+        { label: "Вода", value: "91 г" }
+    ]
     }
 ]
