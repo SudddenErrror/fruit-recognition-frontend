@@ -5,12 +5,16 @@ type BottomControlProps = {
   onTakePicture: () => void;
   onOpenGallery: () => void;
   isProcessing: boolean;
+  scanMode: 'fruit' | 'plu';
+  onToggleMode: () => void;
 };
 
 export const BottomControlPanel: React.FC<BottomControlProps> = ({ 
   onTakePicture, 
   onOpenGallery,
-  isProcessing 
+  isProcessing,
+  scanMode,
+  onToggleMode
 }) => {
   return (
     <View style={styles.bottomPanelContainer}>
@@ -33,12 +37,22 @@ export const BottomControlPanel: React.FC<BottomControlProps> = ({
         >
           <View style={[
             styles.shutterButtonInner, 
-            isProcessing && { backgroundColor: '#ccc' } // Visual feedback when loading
+            isProcessing && { backgroundColor: '#ccc' }
           ]} />
         </TouchableOpacity>
 
-        {/* Empty View to balance layout (Right) */}
-        <View style={styles.emptySpacer} />
+        {/* Toggle Mode Button (Right) */}
+        <TouchableOpacity
+          onPress={onToggleMode}
+          disabled={isProcessing}
+          style={styles.modeToggleButton}
+        >
+          <Ionicons 
+            name={scanMode === 'fruit' ? "leaf-outline" : "barcode-outline"} 
+            size={28} 
+            color="white" 
+          />
+        </TouchableOpacity>
         
       </View>
     </View>
@@ -166,8 +180,12 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     backgroundColor: 'white',
   },
-  
-  emptySpacer: {
-    width: 50, // Matches gallery button width to keep center button centered
+  modeToggleButton: {
+    width: 50,
+    height: 50,
+    borderRadius: 10,
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
