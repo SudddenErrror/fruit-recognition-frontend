@@ -6,6 +6,7 @@ export const fruitData = [
         image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSk3b8Bvk13EwXdAMG51LCLiHG7IoAq4bzZBw&s",
         name: "Апельсин",
         description: "Сочный цитрусовый фрукт, богатый витамином C",
+        plu_code: "4012",
         vitamins: [
             { label: "Витамин A", value: "11 мкг" },
             { label: "Витамин B1", value: "0.087 мг" },
@@ -55,6 +56,7 @@ export const fruitData = [
         image_url: "https://upload.wikimedia.org/wikipedia/commons/d/d3/Kiwi_aka.jpg",
         name: "Киви",
         description: "Экзотический фрукт с кисло-сладким вкусом и высоким содержанием витамина C",
+        plu_code: "4030",
         vitamins: [
             { label: "Витамин A", value: "4 мкг" },
             { label: "Витамин B1", value: "0.02 мг" },
@@ -95,6 +97,7 @@ export const fruitData = [
         image_url: "https://upload.wikimedia.org/wikipedia/commons/0/0f/Litchi_chinensis_fruit.jpg",
         name: "Личи",
         description: "Тропический фрукт с нежной сладкой мякотью и ароматным вкусом",
+        plu_code: "4230",
         vitamins: [
             { label: "Витамин C", value: "71.5 мг" },
             { label: "Витамин B1", value: "0.01 мг" },
@@ -130,6 +133,7 @@ export const fruitData = [
         image_url: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Coconut.jpg",
         name: "Кокос",
         description: "Питательный тропический плод с высоким содержанием жиров и клетчатки",
+        plu_code: "4264",
         vitamins: [
             { label: "Витамин C", value: "3.3 мг" },
             { label: "Витамин B1", value: "0.07 мг" },
@@ -165,6 +169,7 @@ export const fruitData = [
     image_url: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg",
     name: "Банан",
     description: "Популярный сладкий фрукт, богатый калием и быстрыми углеводами",
+    plu_code: "4011",
     vitamins: [
         { label: "Витамин A", value: "3 мкг" },
         { label: "Витамин B1", value: "0.03 мг" },
@@ -204,7 +209,8 @@ export const fruitData = [
     scientific_name: "Ficus carica",
     image_url: "https://upload.wikimedia.org/wikipedia/commons/3/36/Figs.jpg",
     name: "Инжир",
-    description: "Сладкий плод с мягкой мякотью, богатый клетчаткой и минералами",
+    description: "Сладкий плод с мягкой мякотью, богатый клетчаткой и минералами",\
+    plu_code: "3078",
     vitamins: [
         { label: "Витамин A", value: "7 мкг" },
         { label: "Витамин B1", value: "0.06 мг" },
@@ -244,6 +250,7 @@ export const fruitData = [
     image_url: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Dimocarpus_longan_fruit.jpg",
     name: "Лонган",
     description: "Тропический фрукт с прозрачной сладкой мякотью и легким мускусным ароматом",
+    plu_code: "4327",
     vitamins: [
         { label: "Витамин C", value: "84 мг" },
         { label: "Витамин B1", value: "0.03 мг" },
@@ -277,6 +284,7 @@ export const fruitData = [
     image_url: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Pineapple_and_cross_section.jpg",
     name: "Ананас",
     description: "Тропический фрукт с сочной мякотью и высоким содержанием витамина C",
+    plu_code: "4430",
     vitamins: [
         { label: "Витамин A", value: "3 мкг" },
         { label: "Витамин B1", value: "0.08 мг" },
@@ -317,6 +325,7 @@ export const fruitData = [
     image_url: "https://upload.wikimedia.org/wikipedia/commons/c/c2/Avocado.jpg",
     name: "Авокадо",
     description: "Питательный фрукт с высоким содержанием полезных жиров и витаминов",
+    plu_code: "4225",
     vitamins: [
         { label: "Витамин A", value: "7 мкг" },
         { label: "Витамин B1", value: "0.07 мг" },
@@ -358,6 +367,7 @@ export const fruitData = [
     image_url: "https://upload.wikimedia.org/wikipedia/commons/2/29/Carambola_cross_section.jpg",
     name: "Карамбола",
     description: "Экзотический фрукт в форме звезды с освежающим кисло-сладким вкусом",
+    plu_code: "4263",
     vitamins: [
         { label: "Витамин A", value: "3 мкг" },
         { label: "Витамин B1", value: "0.01 мг" },
