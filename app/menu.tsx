@@ -89,7 +89,7 @@ export default function MenuScreen() {
     if (query === '') return true;
 
     const idMatch = String(fruit.plu_code).includes(query);
-    const nameMatch = `${fruit.id}.name`.toLowerCase().includes(query);
+    const nameMatch = fruit.name.toLowerCase().includes(query);
 
     return idMatch || nameMatch;
   });
