@@ -209,7 +209,7 @@ export const fruitData = [
     scientific_name: "Ficus carica",
     image_url: "https://upload.wikimedia.org/wikipedia/commons/3/36/Figs.jpg",
     name: "Инжир",
-    description: "Сладкий плод с мягкой мякотью, богатый клетчаткой и минералами",\
+    description: "Сладкий плод с мягкой мякотью, богатый клетчаткой и минералами",
     plu_code: "3078",
     vitamins: [
         { label: "Витамин A", value: "7 мкг" },
