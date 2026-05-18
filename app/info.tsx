@@ -1,7 +1,6 @@
 import { FruitHero } from '@/src/components/FruitHero';
 import { InfoTable } from '@/src/components/InfoTable';
 import { TopNavigation } from '@/src/components/TopNavigation';
-import { useFruitStore } from '@/src/store/fruitStore';
 import { useRouter, useLocalSearchParams  } from 'expo-router';
 import React from 'react';
 import {
