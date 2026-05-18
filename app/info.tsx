@@ -47,7 +47,7 @@ export default function FruitDetailScreen() {
       <ScrollView contentContainerStyle={styles.scrollContent}>
         
         <FruitHero 
-          imageUrl={fruit.image_url ?? ""} 
+          slug={fruit.slug}
           name={fruit.name ?? "Не распознан"} 
           scientificName={fruit.scientific_name}
         />

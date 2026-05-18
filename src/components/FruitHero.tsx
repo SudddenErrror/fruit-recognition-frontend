@@ -3,16 +3,16 @@ import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
 import { fruitImages } from '../constants/fruitImages';
 
 export type HeroProps = {
-  imageUrl: string;
+  slug: string,
   name: string;
   scientificName?: string;
 };
 
-export const FruitHero: React.FC<HeroProps> = ({ imageUrl, name, scientificName }) => {
+export const FruitHero: React.FC<HeroProps> = ({ slug, name, scientificName }) => {
   return (
     <View style={styles.heroContainer}>
       <Image
-        source={fruitImages[name] || fruitImages.default}
+        source={fruitImages[slug] || fruitImages.default}
         style={styles.heroImage}
         resizeMode="cover"
       />
