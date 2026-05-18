@@ -88,7 +88,7 @@ export default function MenuScreen() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredMonuments = fruitData.filter(fruit => {
+  const filteredFruits = fruitData.filter(fruit => {
     const query = searchQuery.trim().toLowerCase();
     if (query === '') return true;
 
@@ -122,7 +122,7 @@ export default function MenuScreen() {
         <Text style={styles.sectionTitle}>Фрукты</Text>
         
         <FlatList
-          data={filteredMonuments}
+          data={filteredFruits}
           keyExtractor={(item) => String(item.id)}
           numColumns={2}
           contentContainerStyle={styles.flatListContent}
