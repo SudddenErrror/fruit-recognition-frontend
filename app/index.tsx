@@ -1,5 +1,7 @@
 import api from '@/src/api/axios';
 import { BottomControlPanel } from '@/src/components/BottomControlPanel';
+import { PluInputModal } from '@/src/components/PluInputModal';
+import { fruitData } from '@/src/store/fruitData';
 import { LoadingOverlay } from '@/src/components/LoadingOverlay';
 import { ScannerFrame } from '@/src/components/ScannerFrame';
 import { TopControlPanel } from '@/src/components/TopControlPanel';
@@ -20,6 +22,8 @@ import Toast from 'react-native-toast-message';
 // --- Main Screen Component ---
 export default function CameraScreen() {
   const [loading, setLoading] = useState(false);
+  const [scanMode, setScanMode] = useState<'fruit' | 'plu'>('fruit');
+  const [isPluModalVisible, setIsPluModalVisible] = useState(false);
 
 
   const router = useRouter();
@@ -143,23 +147,27 @@ export default function CameraScreen() {
     }
   };
 
+  const toggleMode = () => {
+    setScanMode(prev => (prev === 'fruit' ? 'plu' : 'fruit'));
+  };
+
   const handleTakePicture = async () => {
+    if (scanMode === 'plu') {
+      // Открываем модалку для ввода PLU
+      setIsPluModalVisible(true);
+      return;
+    }
+
+    // Существующая логика для режима фруктов
     setLoading(true);
     if (cameraRef.current) {
       try {
         await cameraRef.current.pausePreview();
         setIsProcessing(true);
         const photo = await cameraRef.current.takePictureAsync();
-        
         if (photo) {
-          // await new Promise(resolve => setTimeout(resolve, 2500));
-          // 1. Send request to server
           await sendToServer(photo.uri);
         }
-
-
-        // await new Promise(resolve => setTimeout(resolve, 2500));
-        // router.push('/info');
       } catch (error) {
         Alert.alert("Error", "Failed to take picture.");
         console.error(error);
@@ -171,13 +179,35 @@ export default function CameraScreen() {
     }
   };
 
+  const handlePluSubmit = async (pluCode: string) => {
+    setLoading(true);
+    setIsProcessing(true);
+    try {
+      // Ищем фрукт по PLU в локальной базе
+      const fruit = fruitData.find(f => String(f.plu_code) === pluCode);
+      if (fruit) {
+        router.push(`/info?slug=${fruit.slug}`);
+      } else {
+        Toast.show({
+          type: 'error',
+          text1: 'Фрукт с таким PLU не найден',
+        });
+      }
+    } catch (error) {
+      Alert.alert('Ошибка', 'Не удалось найти фрукт по PLU');
+      console.error(error);
+    } finally {
+      setLoading(false);
+      setIsProcessing(false);
+    }
+  };
+
   const handleOpenMenu = () => {
     router.push('/menu');
   };
 
   return (
     <View style={styles.container}>
-      
       <View style={styles.topOpaqueBlock}>
         <TopControlPanel 
           isTorchOn={isTorchOn} 
@@ -201,9 +231,17 @@ export default function CameraScreen() {
           onTakePicture={handleTakePicture} 
           onOpenGallery={handleOpenGallery}
           isProcessing={isProcessing}
+          scanMode={scanMode}
+          onToggleMode={toggleMode}
         />
       </View>
-      <LoadingOverlay visible={loading} text="Обработка фото..." />
+
+      <LoadingOverlay visible={loading} text="Обработка..." />
+      <PluInputModal
+        visible={isPluModalVisible}
+        onClose={() => setIsPluModalVisible(false)}
+        onSubmit={handlePluSubmit}
+      />
       <Toast />
     </View>
   );
