@@ -172,7 +172,7 @@ export default function CameraScreen() {
   };
 
   const handleOpenMenu = () => {
-    Alert.alert("Menu", "Opening menu...");
+    router.push('/menu');
   };
 
   return (
