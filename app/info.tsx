@@ -52,6 +52,9 @@ export default function FruitDetailScreen() {
           scientificName={fruit.scientific_name}
         />
 
+        <View style={styles.badgeContainer}>
+          <Text style={[styles.badgeText, { color: 'black' }]}>#{fruit.plu_code}</Text>
+        </View>
         <View style={styles.sectionContainer}>
           <Text style={styles.sectionTitle}>Описание</Text>
           <Text style={styles.descriptionText}>
@@ -102,6 +105,20 @@ export const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
     fontWeight: '600',
+  },
+
+  badgeContainer: {
+    alignSelf: 'flex-start',
+    backgroundColor: '#FFD700',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 6,
+    marginBottom: 20,
+    marginLeft: 20,
+  },
+  badgeText: {
+    fontWeight: 'bold',
+    fontSize: 14,
   },
 
   // --- Scroll Styles ---
