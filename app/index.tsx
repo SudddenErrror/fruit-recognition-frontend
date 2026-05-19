@@ -1,6 +1,5 @@
 import api from '@/src/api/axios';
 import { BottomControlPanel } from '@/src/components/BottomControlPanel';
-import { PluInputModal } from '@/src/components/PluInputModal';
 import { fruitData } from '@/src/store/fruitData';
 import { LoadingOverlay } from '@/src/components/LoadingOverlay';
 import { ScannerFrame, PLUScannerFrame } from '@/src/components/ScannerFrame';
@@ -23,7 +22,6 @@ import Toast from 'react-native-toast-message';
 export default function CameraScreen() {
   const [loading, setLoading] = useState(false);
   const [scanMode, setScanMode] = useState<'fruit' | 'plu'>('fruit');
-  const [isPluModalVisible, setIsPluModalVisible] = useState(false);
 
 
   const router = useRouter();
