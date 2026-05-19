@@ -15,6 +15,7 @@ import {
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { fruitData } from '@/src/store/fruitData';
+import { fruitImages } from '@/src/constants/fruitImages';
 
 
 type Fruit = typeof fruitData[0];
@@ -61,7 +62,10 @@ const SearchBar = ({ value, onChange }: { value: string; onChange: (text: string
 
 const FruitCard = ({ item, onPress}: { item: Fruit; onPress: () => void }) => (
   <TouchableOpacity style={[styles.cardContainer, { backgroundColor: "#1C1C1E" }]} onPress={onPress} activeOpacity={0.8}>
-    <Image source={{ uri: item.image_url }} style={styles.cardImage} />
+    <Image 
+      source={fruitImages[item.slug] || fruitImages.default}
+      style={styles.cardImage}
+    />
     <View style={styles.cardOverlay}>
       <View style={styles.badgeContainer}>
         <Text style={[styles.badgeText, { color: "#FFD700" }]}>#{item.plu_code}</Text>
@@ -84,12 +88,12 @@ export default function MenuScreen() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredMonuments = fruitData.filter(fruit => {
+  const filteredFruits = fruitData.filter(fruit => {
     const query = searchQuery.trim().toLowerCase();
     if (query === '') return true;
 
     const idMatch = String(fruit.plu_code).includes(query);
-    const nameMatch = fruit.name.toLowerCase().includes(query);
+    const nameMatch = `${fruit.name}`.toLowerCase().includes(query);
 
     return idMatch || nameMatch;
   });
@@ -118,7 +122,7 @@ export default function MenuScreen() {
         <Text style={styles.sectionTitle}>Фрукты</Text>
         
         <FlatList
-          data={filteredMonuments}
+          data={filteredFruits}
           keyExtractor={(item) => String(item.id)}
           numColumns={2}
           contentContainerStyle={styles.flatListContent}

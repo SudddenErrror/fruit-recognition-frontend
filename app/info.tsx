@@ -32,7 +32,7 @@ export default function FruitDetailScreen() {
         <StatusBar barStyle="light-content" />
         <TopNavigation onBack={handleBack} title="Details" />
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={{ color: 'white' }}>Loading fruit data...</Text>
+          <Text style={{ color: 'white' }}>Загрузка данных...</Text>
         </View>
       </View>
     );
@@ -47,7 +47,7 @@ export default function FruitDetailScreen() {
       <ScrollView contentContainerStyle={styles.scrollContent}>
         
         <FruitHero 
-          imageUrl={fruit.image_url ?? ""} 
+          slug={fruit.slug}
           name={fruit.name ?? "Не распознан"} 
           scientificName={fruit.scientific_name}
         />

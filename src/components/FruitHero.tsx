@@ -1,20 +1,20 @@
 import React from 'react';
 import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
+import { fruitImages } from '../constants/fruitImages';
 
 export type HeroProps = {
-  imageUrl: string;
+  slug: string,
   name: string;
   scientificName?: string;
 };
 
-export const FruitHero: React.FC<HeroProps> = ({ imageUrl, name, scientificName }) => {
+export const FruitHero: React.FC<HeroProps> = ({ slug, name, scientificName }) => {
   return (
     <View style={styles.heroContainer}>
-      <Image 
-        source={{ uri: imageUrl }} 
-        // source={require('../../assets/images/orange.jpg')}
-        style={styles.heroImage} 
-        resizeMode="cover" 
+      <Image
+        source={fruitImages[slug] || fruitImages.default}
+        style={styles.heroImage}
+        resizeMode="cover"
       />
       <View style={styles.heroTextOverlay}>
         <Text style={styles.fruitName}>{name}</Text>
@@ -25,6 +25,7 @@ export const FruitHero: React.FC<HeroProps> = ({ imageUrl, name, scientificName 
     </View>
   );
 };
+
 // --- Styles ---
 const { width } = Dimensions.get('window');
 
