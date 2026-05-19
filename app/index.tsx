@@ -151,31 +151,70 @@ export default function CameraScreen() {
     setScanMode(prev => (prev === 'fruit' ? 'plu' : 'fruit'));
   };
 
-  const handleTakePicture = async () => {
-    if (scanMode === 'plu') {
-      // Открываем модалку для ввода PLU
-      setIsPluModalVisible(true);
-      return;
-    }
+  // Функция распознавания PLU по фото
+  const recognizePluFromImage = async (imageUri: string): Promise<string | null> => {
+    const formData = new FormData();
+    formData.append('image', {
+      uri: imageUri,
+      name: 'plu_image.jpg',
+      type: 'image/jpeg',
+    } as any);
 
-    // Существующая логика для режима фруктов
+    try {
+      const response = await api.post('/inference/plu', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      return response.data.plu_code; // предположим, сервер возвращает { plu_code: "4011" }
+    } catch (error) {
+      console.error('PLU recognition failed:', error);
+      return null;
+    }
+  };
+
+  
+
+  // Обновлённый обработчик съёмки
+  const handleTakePicture = async () => {
+    if (!cameraRef.current) return;
+
     setLoading(true);
-    if (cameraRef.current) {
-      try {
-        await cameraRef.current.pausePreview();
-        setIsProcessing(true);
-        const photo = await cameraRef.current.takePictureAsync();
-        if (photo) {
-          await sendToServer(photo.uri);
+    setIsProcessing(true);
+    try {
+      await cameraRef.current.pausePreview();
+      const photo = await cameraRef.current.takePictureAsync();
+      if (!photo) return;
+
+      if (scanMode === 'fruit') {
+        // Обычное распознавание фрукта
+        await sendToServer(photo.uri);
+      } 
+      else if (scanMode === 'plu') {
+        // Распознавание PLU на фото
+        const pluCode = await recognizePluFromImage(photo.uri);
+        if (pluCode) {
+          const fruit = fruitData.find(f => String(f.plu_code) === pluCode);
+          if (fruit) {
+            router.push(`/info?slug=${fruit.slug}`);
+          } else {
+            Toast.show({
+              type: 'error',
+              text1: `PLU ${pluCode} не найден`,
+            });
+          }
+        } else {
+          Toast.show({
+            type: 'error',
+            text1: 'Не удалось распознать PLU на фото',
+          });
         }
-      } catch (error) {
-        Alert.alert("Error", "Failed to take picture.");
-        console.error(error);
-      } finally {
-        setLoading(false);
-        setIsProcessing(false);
-        await cameraRef.current?.resumePreview();
       }
+    } catch (error) {
+      Alert.alert('Ошибка', 'Не удалось сделать фото или распознать');
+      console.error(error);
+    } finally {
+      setLoading(false);
+      setIsProcessing(false);
+      await cameraRef.current?.resumePreview();
     }
   };
 
@@ -237,11 +276,6 @@ export default function CameraScreen() {
       </View>
 
       <LoadingOverlay visible={loading} text="Обработка..." />
-      <PluInputModal
-        visible={isPluModalVisible}
-        onClose={() => setIsPluModalVisible(false)}
-        onSubmit={handlePluSubmit}
-      />
       <Toast />
     </View>
   );
