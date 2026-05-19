@@ -126,25 +126,45 @@ export default function CameraScreen() {
     } as any);
 
     try {
-      const result = await api.post('/inference/classify', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      if (result.data.message === 'No objects detected')  {
-        Toast.show({
-          type: 'error',
-          text1: 'No fruits detected',
+      if (scanMode === 'fruit') {
+        const result = await api.post('/inference/classify', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
         });
-        return;
-      }
+        if (result.data.message === 'No objects detected')  {
+          Toast.show({
+            type: 'error',
+            text1: 'No fruits detected',
+          });
+          return;
+        }
 
-      const slug = result.data.label;
-      router.push(`/info?slug=${slug}`);
-    } catch (error) {
-      Alert.alert("Error", "Failed to send image to server.");
-      console.error(error);
-    }
+          const slug = result.data.label;
+          router.push(`/info?slug=${slug}`);
+        } 
+      
+      else if (scanMode === 'plu') {
+        const result = await api.post('/inference/plu', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        if (result.data.message === 'No PLU detected')  {
+          Toast.show({
+            type: 'error',
+            text1: 'No PLU detected',
+          });
+          return;
+        }
+
+          const slug = result.data.label;
+          router.push(`/info?slug=${slug}`);
+        }
+      } catch (error) {
+          Alert.alert("Error", "Failed to send image to server.");
+          console.error(error);
+      }
   };
 
   const toggleMode = () => {
@@ -182,31 +202,8 @@ export default function CameraScreen() {
     try {
       await cameraRef.current.pausePreview();
       const photo = await cameraRef.current.takePictureAsync();
-      if (!photo) return;
-
-      if (scanMode === 'fruit') {
-        // Обычное распознавание фрукта
+      if (photo) {
         await sendToServer(photo.uri);
-      } 
-      else if (scanMode === 'plu') {
-        // Распознавание PLU на фото
-        const pluCode = await recognizePluFromImage(photo.uri);
-        if (pluCode) {
-          const fruit = fruitData.find(f => String(f.plu_code) === pluCode);
-          if (fruit) {
-            router.push(`/info?slug=${fruit.slug}`);
-          } else {
-            Toast.show({
-              type: 'error',
-              text1: `PLU ${pluCode} не найден`,
-            });
-          }
-        } else {
-          Toast.show({
-            type: 'error',
-            text1: 'Не удалось распознать PLU на фото',
-          });
-        }
       }
     } catch (error) {
       Alert.alert('Ошибка', 'Не удалось сделать фото или распознать');
