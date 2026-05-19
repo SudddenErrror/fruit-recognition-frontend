@@ -158,7 +158,7 @@ export default function CameraScreen() {
           return;
         }
 
-          const slug = result.data.label;
+          const slug = result.data.fruit_info.slug;
           router.push(`/info?slug=${slug}`);
         }
       } catch (error) {
