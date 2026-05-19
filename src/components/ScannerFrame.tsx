@@ -14,6 +14,20 @@ export const ScannerFrame: React.FC = () => {
   );
 };
 
+export const PLUScannerFrame: React.FC = () => {
+  return (
+    <View style={styles.qrFrameContainer}>
+      <View style={styles.qrFrame}>
+        <View style={[styles.corner, styles.topLeftPLU]} />
+        <View style={[styles.corner, styles.topRightPLU]} />
+        <View style={[styles.corner, styles.bottomLeftPLU]} />
+        <View style={[styles.corner, styles.bottomRightPLU]} />
+      </View>
+      <Text style={styles.qrText}>Отсканируйте этикетку</Text>
+    </View>
+  );
+};
+
 // --- Styles ---
 const { width } = Dimensions.get('window');
 const FRAME_SIZE = 250;
@@ -101,6 +115,10 @@ const styles = StyleSheet.create({
   topRight: { top: 0, right: 0, borderBottomWidth: 0, borderLeftWidth: 0 },
   bottomLeft: { bottom: 0, left: 0, borderTopWidth: 0, borderRightWidth: 0 },
   bottomRight: { bottom: 0, right: 0, borderTopWidth: 0, borderLeftWidth: 0 },
+  topLeftPLU: { top: 50, left: 0, borderBottomWidth: 0, borderRightWidth: 0 },
+  topRightPLU: { top: 50, right: 0, borderBottomWidth: 0, borderLeftWidth: 0 },
+  bottomLeftPLU: { bottom: 50, left: 0, borderTopWidth: 0, borderRightWidth: 0 },
+  bottomRightPLU: { bottom: 50, right: 0, borderTopWidth: 0, borderLeftWidth: 0 },
 
   // Bottom Panel Styles
   bottomPanelContainer: {

@@ -3,7 +3,7 @@ import { BottomControlPanel } from '@/src/components/BottomControlPanel';
 import { PluInputModal } from '@/src/components/PluInputModal';
 import { fruitData } from '@/src/store/fruitData';
 import { LoadingOverlay } from '@/src/components/LoadingOverlay';
-import { ScannerFrame } from '@/src/components/ScannerFrame';
+import { ScannerFrame, PLUScannerFrame } from '@/src/components/ScannerFrame';
 import { TopControlPanel } from '@/src/components/TopControlPanel';
 import { CameraView, useCameraPermissions } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
@@ -222,6 +222,8 @@ export default function CameraScreen() {
     router.push('/menu');
   };
 
+  if (scanMode === 'plu')
+
   return (
     <View style={styles.container}>
       <View style={styles.topOpaqueBlock}>
@@ -239,7 +241,44 @@ export default function CameraScreen() {
             style={styles.camera} 
             enableTorch={isTorchOn}
           >
-            <ScannerFrame />
+            <PLUScannerFrame /> 
+          </CameraView>
+        </View>
+
+        <BottomControlPanel 
+          onTakePicture={handleTakePicture} 
+          onOpenGallery={handleOpenGallery}
+          isProcessing={isProcessing}
+          scanMode={scanMode}
+          onToggleMode={toggleMode}
+        />
+      </View>
+
+      <LoadingOverlay visible={loading} text="Обработка..." />
+      <Toast />
+    </View>
+  );
+
+  if (scanMode === 'fruit')
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.topOpaqueBlock}>
+        <TopControlPanel 
+          isTorchOn={isTorchOn} 
+          onToggleTorch={handleToggleTorch} 
+          onOpenMenu={handleOpenMenu}
+        />
+      </View>
+
+      <View style={styles.cameraContainer}>
+        <View style={styles.cameraWrapper}>
+          <CameraView 
+            ref={cameraRef}
+            style={styles.camera} 
+            enableTorch={isTorchOn}
+          >
+            <ScannerFrame /> 
           </CameraView>
         </View>
 
