@@ -171,26 +171,6 @@ export default function CameraScreen() {
     setScanMode(prev => (prev === 'fruit' ? 'plu' : 'fruit'));
   };
 
-  // Функция распознавания PLU по фото
-  const recognizePluFromImage = async (imageUri: string): Promise<string | null> => {
-    const formData = new FormData();
-    formData.append('image', {
-      uri: imageUri,
-      name: 'plu_image.jpg',
-      type: 'image/jpeg',
-    } as any);
-
-    try {
-      const response = await api.post('/inference/plu', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-      return response.data.plu_code; // предположим, сервер возвращает { plu_code: "4011" }
-    } catch (error) {
-      console.error('PLU recognition failed:', error);
-      return null;
-    }
-  };
-
   
 
   // Обновлённый обработчик съёмки
